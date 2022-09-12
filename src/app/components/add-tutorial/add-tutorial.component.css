@@ -1,0 +1,13 @@
+.abs-center {
+  display: block;
+  max-width: 400px;
+  margin: auto;
+}
+
+.form {
+  width: 450px;
+}
+
+button {
+  align-items: center;
+}

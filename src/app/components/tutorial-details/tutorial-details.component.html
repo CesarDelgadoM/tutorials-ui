@@ -1,0 +1,65 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentTutorial.id">
+    <h4>Tutorial</h4>
+    <div>
+      <label><strong>Titulo:</strong></label> {{currentTutorial.title}}
+    </div>
+    <div>
+      <label><strong>Descripcion:</strong></label> {{currentTutorial.description}}
+    </div>
+    <div>
+      <label><strong>Estado:</strong></label> {{currentTutorial.published ? "Publicado" : "Pendiente"}}
+    </div>
+    <a class="badge rounded-pill bg-warning text-dark" routerLink="/tutorials/{{currentTutorial.id}}">Editar</a>
+  </div>
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Please click on a Tutorial...</p>
+  </div>
+</div>
+<ng-template #editable>
+  <div *ngIf="currentTutorial.id" class="edit-form">
+    <h4>Tutorial</h4>
+    <form>
+      <div class="form-group">
+        <label for="title"><strong>Titulo</strong></label>
+        <input 
+        type="text"
+        class="form-control"
+        id="title"
+        [(ngModel)]="currentTutorial.title"
+        name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description"><strong>Description</strong></label>
+        <input 
+        type="text"
+        class="form-control"
+        id="description"
+        [(ngModel)]="currentTutorial.description"
+        name="description"
+        />
+      </div>
+      <div class="form-group">
+        <label><strong>Estado:</strong></label>
+        {{currentTutorial.published ? "Publicado": "Pendiente"}}
+      </div>
+    </form>
+
+    <button type="submit" class="badge rounded-pill bg-success" (click)="updateTutorial()">
+      Actualizar
+    </button>
+    <button type="submit" class="badge rounded-pill bg-danger" (click)="deleteTutorial()">
+      Eliminar
+    </button>
+    <button class="badge rounded-pill bg-primary" (click)="updatePublishedTutorial(false)">
+      Pendiente
+    </button>
+    <button *ngIf="!currentTutorial.published" class="badge rounded-pill bg-secondary" (click)="updatePublishedTutorial(true)">
+      Publicar
+    </button>
+
+    <p>{{message}}</p>
+  </div>
+</ng-template>
