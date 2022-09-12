@@ -9,7 +9,7 @@ import { ObservableLike } from 'rxjs';
 })
 export class TutorialService {
 
-  private urlApi = 'http://localhost:8081/api';
+  private urlApi = 'https://tutorials-api-go.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
